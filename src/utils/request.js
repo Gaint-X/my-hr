@@ -10,7 +10,7 @@ _axios.interceptors.request.use(
 )
 // 响应拦截
 _axios.interceptors.response.use(
-  (res) => res,
+  (res) => res.data,
   (err) => Promise.reject(err)
 )
 
