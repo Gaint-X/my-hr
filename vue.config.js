@@ -30,11 +30,19 @@ module.exports = {
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
-    port: port,
+    port: 4545,
     open: true,
     overlay: {
       warnings: false,
       errors: true
+    },
+    proxy: {
+      '/ihrm': {
+        target: 'http://119.91.150.211:3000/api',
+        pathRewrite: {
+          '^/ihrm': ''
+        }
+      }
     }
     // before: require('./mock/mock-server.js')
   },
