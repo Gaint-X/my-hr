@@ -1,3 +1,5 @@
+import { sysLogin } from '@/api/login.js'
+
 export default {
   namespaced: true,
   state: {
@@ -8,5 +10,10 @@ export default {
       state.token = value
     }
   },
-  actions: {}
+  actions: {
+    async toLogin(ctx, value) {
+      const res = await sysLogin(value)
+      ctx.commit('SETTOKEN', res.data)
+    }
+  }
 }

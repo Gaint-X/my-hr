@@ -29,7 +29,6 @@
 </template>
 
 <script>
-import { sysLogin } from '@/api/login.js'
 export default {
   data() {
     return {
@@ -57,9 +56,8 @@ export default {
     async submit() {
       this.$refs.form.validate(async(result) => {
         if (result) {
-          const res = await sysLogin(this.form)
-          console.log('res:', res)
-          this.$store.commit('login/SETTOKEN', res.data)
+          await this.$store.dispatch('login/toLogin', this.form)
+          this.$message.success('登录成功')
         }
       })
     }
